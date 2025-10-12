@@ -5,6 +5,7 @@
 int StudentManager::last_student_id = 1000;
 
 void StudentManager::addStudent(char const* name, float midterm, float final) {
+    if (num_of_students>=100) return;
     int id = ++last_student_id;
     Student newstudent(name, id, midterm, final);
     students[num_of_students] = newstudent;
