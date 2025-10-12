@@ -16,8 +16,12 @@ void StudentManager::addStudent(char const* name, float midterm, float final) {
 void StudentManager::deleteStudent(int id) {
     for (int i=0; i<num_of_students; i++) {
         if (students[i].getID() == id) {
-            Student s = students[i+1];
-            students[i] = s;
+            for (int j=i; j<num_of_students-1; j++) {
+                Student s = students[j+1];
+                students[j] = s;
+            }
+            --num_of_students;
+            return;
         }
     }
 }
@@ -90,7 +94,7 @@ float StudentManager::getFinalAverage() const {
 float StudentManager::getTotalAverage() const {
     float ans = 0;
     for (int i=0; i<num_of_students; i++) {
-        ans += students[i].getRecord().getTotal
+        ans += students[i].getRecord().getTotal();
     }
     return ans/num_of_students;
 }
