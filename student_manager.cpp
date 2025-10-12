@@ -15,7 +15,8 @@ void StudentManager::addStudent(char const* name, float midterm, float final) {
 void StudentManager::deleteStudent(int id) {
     for (int i=0; i<num_of_students; i++) {
         if (students[i].getID() == id) {
-            students[i] = students[i+1];
+            Student s = students[i+1];
+            students[i] = s;
         }
     }
 }
@@ -24,6 +25,7 @@ void StudentManager::modifyStudent(const Student& student) {
     for (int i=0; i<num_of_students; i++) {
         if (student.getID() == students[i].getID()) {
             students[i] = student;
+            break;
         }
     }
 }
@@ -60,8 +62,9 @@ int StudentManager::findBestStudentInFinal() const {
 int StudentManager::findBestStudent() const {
     int bmid = 0;
     for (int i=0; i<num_of_students; i++) {
-        if (students[i].getRecord().getMidterm() > bmid){
-        bmid = students[i].getRecord().getMidterm();
+        if (students[i].getRecord().getMidterm()+students[i].getRecord().getFinal()
+        > students[bmid].getRecord().getMidterm()+students[bmid].getRecord().getFinal()) {
+        bmid = i;
         }
     }
     return bmid;
@@ -86,8 +89,7 @@ float StudentManager::getFinalAverage() const {
 float StudentManager::getTotalAverage() const {
     float ans = 0;
     for (int i=0; i<num_of_students; i++) {
-        ans += students[i].getRecord().getFinal();
-        ans += students[i].getRecord().getMidterm();
+        ans += students[i].getRecord().getTotal
     }
     return ans/num_of_students;
 }
