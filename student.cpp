@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+int Student::last_student_id = 1000;
+
 /* StudentRecord */
 
 StudentRecord::StudentRecord(float midterm, float final) 
@@ -26,12 +28,14 @@ void StudentRecord::updateScores(float midterm, float final) {
 
 Student::Student() 
     :name(""), id(0), record(0.0f, 0.0f)
-{
     
+{
+
 }
 
 Student::Student(const char *name, int id, float midterm, float final)
     : name(name), id(id), record(midterm, final)
+    
 {  }
 
 void Student::updateRecord(const char *name, float midterm, float final) {
