@@ -38,7 +38,7 @@ void StudentManager::modifyStudent(const Student& student) {
 int StudentManager::findStudentByID(int id) const {
     for (int i=0; i<num_of_students; i++) {
         if (id == students[i].getID()) {
-            return i;
+            return id;
         }
     }
     return -1;
@@ -48,7 +48,7 @@ int StudentManager::findBestStudentInMidterm() const {
     int bmid = 0;
     for (int i=0; i<num_of_students; i++) {
         if (students[i].getRecord().getMidterm() > students[bmid].getRecord().getMidterm()){
-        bmid = i;
+        bmid = students[i].getID();
         }
     }
     return bmid;
@@ -58,7 +58,7 @@ int StudentManager::findBestStudentInFinal() const {
     int bfin = 0;
     for (int i=0; i<num_of_students; i++) {
         if (students[i].getRecord().getFinal() > students[bfin].getRecord().getFinal()){
-        bfin = i;
+        bfin = students[i].getID();
         }
     }
     return bfin;
@@ -69,7 +69,7 @@ int StudentManager::findBestStudent() const {
     for (int i=0; i<num_of_students; i++) {
         if (students[i].getRecord().getMidterm()+students[i].getRecord().getFinal()
         > students[bmid].getRecord().getMidterm()+students[bmid].getRecord().getFinal()) {
-        bmid = i;
+        bmid = students[i].getID();
         }
     }
     return bmid;
