@@ -14,7 +14,7 @@ StudentRecord::StudentRecord(float midterm, float final)
 }
 
 float StudentRecord::getTotal() const {
-    float avg = (midterm+final)/2;
+    float avg = (midterm+final);
     return avg;
 }
 
